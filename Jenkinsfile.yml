@@ -1,22 +1,15 @@
 pipeline:
   agent: any
   stages:
-    - stage: Build
+    - stage: "Build"
       steps:
-        - echo 'Building...'
-        - sh 'make build'
-    - stage: Test
+        - script: |
+            echo "Building the project..."
+    - stage: "Test"
       steps:
-        - echo 'Testing...'
-        - sh 'make test'
-    - stage: Deploy
+        - script: |
+            echo "Running tests..."
+    - stage: "Deploy"
       steps:
-        - echo 'Deploying...'
-        - sh 'make deploy'
-  post:
-    always:
-      - echo 'This will always run'
-    success:
-      - echo 'This will run only if successful'
-    failure:
-      - echo 'This will run only if failed'
+        - script: |
+            echo "Deploying the project..."
