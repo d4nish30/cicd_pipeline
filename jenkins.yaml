@@ -1,0 +1,33 @@
+jenkins:
+  systemMessage: "Jenkins configured automatically by Jenkins Configuration as Code plugin"
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          password: "admin"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: true
+
+jobs:
+  - script: >
+      pipelineJob('mypipeline') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url 'https://github.com/d4nish30/cicd_pipeline.git'
+                }
+                branches {
+                  branchSpec {
+                    name '*/main'
+                  }
+                }
+              }
+            }
+            scriptPath 'Jenkinsfile.yml'
+          }
+        }
+      }
