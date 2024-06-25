@@ -1,15 +1,15 @@
 pipeline:
   agent: any
   stages:
-    - stage: "Build"
+    - stage: Build
       steps:
         - script: |
             echo "Building the project..."
-    - stage: "Test"
+    - stage: Test
       steps:
         - script: |
             echo "Running tests..."
-    - stage: "Deploy"
+    - stage: Deploy
       steps:
         - script: |
             echo "Deploying the project..."
